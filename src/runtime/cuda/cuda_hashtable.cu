@@ -386,6 +386,9 @@ OrderedHashTable<IdType>::OrderedHashTable(
   auto device = runtime::DeviceAPI::Get(ctx_);
   table_ = static_cast<Mapping*>(
       device->AllocWorkspace(ctx_, sizeof(Mapping)*size_));
+  // NDArray table_array_ = NDArray::Empty({(int64_t)(sizeof(Mapping) * size_)}, DLDataType{kDLInt, 8, 1}, ctx_);
+  // LOG(INFO) << table_array_.GetSize();
+  // table_ = static_cast<Mapping*>(table_array_.Ptr<void>());
 
   CUDA_CALL(cudaMemsetAsync(
     table_,

@@ -174,13 +174,13 @@ class DGLDataset(object):
         load_flag = not self._force_reload and self.has_cache()
 
         if load_flag:
-            try:
+            if 1:
                 self.load()
                 if self.verbose:
                     print('Done loading data from cached files.')
-            except KeyboardInterrupt:
+            elif 2:
                 raise
-            except:
+            else:
                 load_flag = False
                 if self.verbose:
                     print(traceback.format_exc())
